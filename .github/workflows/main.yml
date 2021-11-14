@@ -1,0 +1,20 @@
+name: Claim diamonds
+
+on:
+  schedule:
+  - cron: "0 10 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install and start
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+        run: |
+          npm ci
+          npm run start
